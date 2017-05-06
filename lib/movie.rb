@@ -31,6 +31,12 @@ module Cinema
     end
 
     def match_filter?(**filters)
+
+      if filters[:period]
+        filters[:year] = MovieCollection::PERIODS[filters[:period]]
+        filters.delete(:period)
+      end
+
       filters.all? do |k, v|
         field = self.send(k)
         field.is_a?(Array) ? field.any? { |acter| v === acter } : v === field
