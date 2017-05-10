@@ -35,20 +35,10 @@ module Cinema
     end
 
     def when? filmname
-      filter(name: filmname).each do |f|
-        if MORNING_SEANS === f.year
-          puts "Сеансы фильма: #{ f.description } идут  c #{ MORNING.first } по #{ MORNING.last } "
-          return 3
-        elsif  DAY_SEANS === f.genre.to_s
-          puts "Сеансы фильма: #{ f.description } идут с #{ DAY.first } по #{ DAY.last } "
-          return 5
-        elsif EVENING_SEANS === f.genre.to_s
-          puts "Сеансы фильма: #{ f.description } идут с #{ EVENING.first } по #{ EVENING.last } "
-          return 10
-        else
-          puts "Такого сеанса в настоящее время нет"
-        end
-      end
+      film = filter(name: filmname).first
+      raise "Такого сеанса нет" unless film
+      time = TIMESEANS.detect { | hours, filtres | film.match_filter?(filtres) }[0]
+      puts  "Сеансы фильма: #{ film.description } идут  c #{ TIMES[time].first } по #{ TIMES[time].last }"
     end
 
     def buy_ticket title

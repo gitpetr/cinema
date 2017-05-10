@@ -134,12 +134,17 @@ rescue RuntimeError => e
   puts "\t\t #{e.message}"
 end
 puts 'theatre.when?'
+begin
 theatre.when? 'Double Indemnity'
-# theatre.when? 'The Prestige'
-# theatre.when? "Who's Afraid of Virginia Woolf?"
-# theatre.when? 'Once Upon a Time in America'
-# theatre.when? "One Flew Over the Cuckoo's Nest"
-# theatre.when? 'The Lord of the Rings: The Return of the King'
+theatre.when? 'The Prestige'
+theatre.when? "Who's Afraid of Virginia Woolf?"
+theatre.when? 'Once Upon a Time in America'
+theatre.when? "One Flew Over the Cuckoo's Nest"
+theatre.when? 'The Lord of the Rings: The Return of the King'
+theatre.when? 'Maugly'
+rescue RuntimeError => e
+  puts "\t\t #{e.message}"
+end
 # puts  'theatre.cash'
 # puts  theatre.cash
 # puts 'theatre.buy_ticket'
