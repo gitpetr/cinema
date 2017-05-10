@@ -36,7 +36,7 @@ module Cinema
 
     def when? filmname
       film = filter(name: filmname).first
-      raize "Такого сеанса нет" unless film
+      raise "Такого сеанса нет" unless film
       time = TIMESEANS.detect { | hours, filtres | film.match_filter?(filtres) }[0]
       puts  "Сеансы фильма: #{ film.description } идут  c #{ TIMES[time].first } по #{ TIMES[time].last }"
     end
